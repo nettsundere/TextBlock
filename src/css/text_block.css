@@ -1,0 +1,5 @@
+*,*::-webkit-input-placeholder {
+  color: rgba(0,0,0,0) !important;
+  -webkit-text-fill-color: rgba(0,0,0,0) !important;
+  text-shadow: none !important;
+}
