@@ -1,9 +1,13 @@
+/**
+ * CSS injector.
+ */
 var PageInjector = function(chrome) {
   this.chrome = chrome; 
 };
 
 /**
-  Toggle text hiding on/off
+ * Toggle text hiding on/off.
+ * @param isEnabled - bool value indicating whether the text hiding sequence should be added/removed.
 */
 PageInjector.prototype.ToggleCSS = function (isEnabled) {
   var cssLocation = chrome.extension.getURL("/css/text_block.css");
