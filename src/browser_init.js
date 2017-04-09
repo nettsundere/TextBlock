@@ -11,8 +11,10 @@ application.Init(function(appIsEnabled) {
     });
   };
 
+  // Current settings -> Current icon look & injector state
   appHandler();
 
+  // On/off handler
   var toggleHandler = function(tab) {
     isCurrentlyEnabled = !isCurrentlyEnabled;
     application.SetEnabled(isCurrentlyEnabled, function(isActive) {
