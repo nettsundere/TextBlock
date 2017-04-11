@@ -1,4 +1,4 @@
-![Logo](/resources/icons/logo128.png)
+![Logo](/reference_material/tile440x280.png)
 
 # TextBlock
 Chrome extension that allows you to hide all this boring text from the internet
