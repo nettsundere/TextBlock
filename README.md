@@ -5,7 +5,7 @@ Chrome extension that allows you to hide all this boring text from the internet
 
 # How it works
 
-* Click on the app logo (letter A) and by making so - hide all text from your internet. 
+* Click on the app logo (letter A in the toolbar) and by making so - hide all text from your internet. 
 * Click again to make it show up again.
 * Have fun
 
