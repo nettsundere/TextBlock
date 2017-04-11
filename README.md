@@ -4,7 +4,7 @@
 Chrome extension that allows you to hide all this boring text from the internet
 
 # How it works
-![How it works](/reference_material/example.png)
+![How it works](/reference_material/screenshot.png)
 
 # License (MIT)
 Copyright (c) 2017 Vladimir `nettsundere` Kiselev
