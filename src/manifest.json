@@ -1,7 +1,7 @@
 {
   "name": "TextBlock",
   "description": "Hide all text in order to make the WEB beautiful",
-  "version": "1.0",
+  "version": "2.0",
 
   "permissions": [
     "storage",
