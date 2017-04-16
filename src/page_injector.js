@@ -11,25 +11,52 @@ var PageInjector = function(chrome) {
 */
 PageInjector.prototype.ToggleCSS = function (isEnabled) {
   var cssLocation = chrome.extension.getURL("/css/text_block.css");
+  var extId = chrome.runtime.id;
 
   if(isEnabled) {
-    var code = "var __body = document.querySelectorAll('html body'); " +
-               "var __existingInjection = document.querySelectorAll('#textblock_injection'); " +
-               "if(__body.length && !__existingInjection.length) {" +
-                  "var __stylesheet = document.createElement('link'); " +
-                  "__stylesheet.setAttribute('rel', 'stylesheet'); " +
-                  "__stylesheet.setAttribute('id', 'textblock_injection');" +
-                  "__stylesheet.setAttribute('href', '" + cssLocation + "');" +
-                  "__body[0].appendChild(__stylesheet);" + 
-              " } ";
+    var code = `(() => {
+      let body = document.querySelectorAll('html body');
+      let existingInjection = document.getElementById('textblock_injection_css');
+      if(body.length && !existingInjection) {
+        let stylesheet = document.createElement('link');
+        stylesheet.setAttribute('rel', 'stylesheet');
+        stylesheet.setAttribute('id', 'textblock_injection_css');
+        stylesheet.setAttribute('href', '${cssLocation}');
+        
+        let iframeTag = "iframe";
+
+        let iframeUpdateHandler = () => { chrome.runtime.sendMessage("${extId}", "iframes_updated"); };
+        let mutObserver = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => { 
+            let addNodes = mutation.addedNodes;
+            if(addNodes) {
+              for(var node of addNodes.values()) {
+                if(node.nodeName.toLowerCase() == "iframe") {
+                  node.onload = iframeUpdateHandler;
+                }
+              }
+            }
+          });
+        });
+        
+        mutObserver.observe(document, { childList: true, subtree: true });
+
+        body[0].appendChild(stylesheet);
+
+        window.TextBlockMutationObserver = mutObserver;
+    }})();`;
   }
   else
   {
-    var code = "var __existingInjection = document.querySelectorAll('#textblock_injection'); " +
-               "if(__existingInjection.length) {" +
-                  "__existingInjection[0].outerHTML = '';" +
-               " } ";
+    var code = `(() => {
+                  let css = document.getElementById('textblock_injection_css');
+                  if(css) {
+                    if(window.TextBlockMutationObserver) {
+                      window.TextBlockMutationObserver.disconnect();
+                    }
+                    css.outerHTML = '';
+                  }
+               })();`;
   }
-
-  chrome.tabs.executeScript({ code: code });
+  chrome.tabs.executeScript({ code: code, allFrames: true });
 }

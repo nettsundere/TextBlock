@@ -35,4 +35,11 @@ application.Init(function(appIsEnabled) {
 
   // active tab changed
   chrome.tabs.onActivated.addListener(appHandler);
+
+  // content changed: iframes updated
+  chrome.runtime.onMessage.addListener(function(message) {
+    if(message == "iframes_updated") {
+      appHandler();
+    }
+  });
 });
