@@ -6,6 +6,9 @@ Chrome extension that allows you to hide all this boring text from the internet
 # Download from the google webstore
 https://chrome.google.com/webstore/detail/textblock/cbjhcabimjmeokngojdenfdpiccgekmd
 
+# Backstory
+https://medium.com/@nettsundere/a-text-is-not-that-important-b586eb0e6087
+
 # How it works
 
 * Click on the app logo (letter A in the toolbar) and by making so - hide all text from your internet. 
