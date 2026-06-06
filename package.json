@@ -13,7 +13,12 @@
     "@playwright/test": "^1.49.0",
     "istanbul-lib-coverage": "^3.2.2",
     "istanbul-lib-instrument": "^6.0.3",
-    "nyc": "^17.1.0"
+    "nyc": "^18.0.0"
+  },
+  "overrides": {
+    "istanbul-lib-processinfo": {
+      "uuid": "^11.1.1"
+    }
   },
   "nyc": {
     "all": false,
