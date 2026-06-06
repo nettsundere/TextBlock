@@ -17,6 +17,30 @@ https://medium.com/@nettsundere/a-text-is-not-that-important-b586eb0e6087
 
 ![How it works](/reference_material/screenshot.png)
 
+# Development / Testing
+
+The extension source lives in `src/` (Manifest V3, service-worker background).
+
+End-to-end tests use Playwright with a real Chromium + the extension loaded,
+and report Istanbul coverage collected from the service worker.
+
+```
+npm install
+npx playwright install chromium
+npm run test:coverage
+```
+
+`test:coverage` builds an instrumented copy under `dist-test/`, runs the e2e
+suite, then prints coverage and fails if it drops below 60% (lines/stmts/funcs).
+
+# Privacy / Data collection
+
+TextBlock collects **no data**. It does not gather, store, transmit, or sell any
+personal or browsing information. Everything runs locally in your browser; the
+only stored value is a single on/off flag (`enabled`) kept in Chrome storage so
+the extension remembers its toggle state. No analytics, no tracking, no network
+requests to any server.
+
 # License (MIT)
 Copyright (c) 2017 Vladimir `nettsundere` Kiselev
 

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>TextBlock test page</title></head>
+<body>
+  <p id="text">Hello World</p>
+  <div id="frames"></div>
+  <script>
+    // Helper used by the e2e tests to add a dynamic iframe.
+    window.addFrame = function(src) {
+      var iframe = document.createElement('iframe');
+      iframe.id = 'dynamic-frame';
+      iframe.src = src;
+      document.getElementById('frames').appendChild(iframe);
+    };
+  </script>
+</body>
+</html>

@@ -29,7 +29,7 @@ var UI = function() {
  * @param callback - the callback to handle app ui state change.
  */
 UI.prototype._ToggleIcons = function(isEnabled, callback) {
-  chrome.browserAction.setIcon({
+  chrome.action.setIcon({
     path: this.icons[isEnabled]
   }, callback);
 };
@@ -39,7 +39,7 @@ UI.prototype._ToggleIcons = function(isEnabled, callback) {
  * @param isEnabled - bool value indicating whether the app is enabled.
  */
 UI.prototype._ToggleTooltips = function(isEnabled) {
-  chrome.browserAction.setTitle({
+  chrome.action.setTitle({
     title: this.tooltips[isEnabled]
   });
 };

@@ -1,15 +1,21 @@
 {
   "name": "TextBlock",
   "description": "Hide all text in order to make the WEB beautiful",
-  "version": "2.0",
+  "version": "3.0",
+
+  "manifest_version": 3,
 
   "permissions": [
     "storage",
+    "scripting"
+  ],
+
+  "host_permissions": [
     "http://*/",
     "https://*/"
   ],
 
-  "browser_action": {
+  "action": {
     "default_icon": {
       "16": "icons/disabled/icon16.png",
       "24": "icons/disabled/icon24.png",
@@ -19,17 +25,6 @@
   },
 
   "background": {
-    "scripts": [
-        "page_injector.js",
-        "ui.js",
-        "app.js",
-        "browser_init.js"
-      ]
-  },
-
-  "web_accessible_resources": [
-    "/css/text_block.css"
-  ],
-
-  "manifest_version": 2
+    "service_worker": "service_worker.js"
+  }
 }
