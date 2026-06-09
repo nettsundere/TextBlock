@@ -1,7 +1,7 @@
 ![Logo](/reference_material/tile440x280.png)
 
 # TextBlock
-Browser extension Chrome (and Safari, kind of) that allows you to hide all this boring text from the internet
+Browser extension for Chrome (and Safari, kind of) that allows you to hide all this boring text from the internet
 
 # Download from the google webstore
 https://chrome.google.com/webstore/detail/textblock/cbjhcabimjmeokngojdenfdpiccgekmd
