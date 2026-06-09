@@ -1,7 +1,7 @@
 ![Logo](/reference_material/tile440x280.png)
 
 # TextBlock
-Chrome extension that allows you to hide all this boring text from the internet
+Browser extension Chrome (and Safari, kind of) that allows you to hide all this boring text from the internet
 
 # Download from the google webstore
 https://chrome.google.com/webstore/detail/textblock/cbjhcabimjmeokngojdenfdpiccgekmd
@@ -33,11 +33,41 @@ npm run test:coverage
 `test:coverage` builds an instrumented copy under `dist-test/`, runs the e2e
 suite, then prints coverage and fails if it drops below 60% (lines/stmts/funcs).
 
+# Safari (macOS) - only unsigned and local for now (I dont have whatever subscription price is)
+
+Requires Safari 16+ (the extension relies on dynamic content-script
+registration — `chrome.scripting.registerContentScripts`) and Xcode.
+
+The Xcode wrapper project lives in `safari/TextBlock/` and references `src/`
+directly — there is no copy step; edit `src/` and rebuild.
+
+Build and run:
+
+1. Safari -> Settings -> Advanced -> enable "Show features for web developers".
+2. Develop -> Developer Settings -> check "Allow unsigned extensions"
+   (this resets every time Safari quits).
+3. Open `safari/TextBlock/TextBlock.xcodeproj` in Xcode and Run (or
+   `xcodebuild -project safari/TextBlock/TextBlock.xcodeproj -scheme TextBlock build`).
+4. Launch the TextBlock app once so macOS registers the extension with Safari.
+5. Safari -> Settings -> Extensions -> enable TextBlock, then grant website
+   access ("Always Allow on Every Website") — Safari gates host permissions
+   behind per-user consent.
+
+Kinda temporary: the extension is not signed, so it only works until Safari
+closes — once Safari quits, "Allow unsigned extensions" resets and you have to
+repeat the steps above.
+
+Note: on Safari `storage.sync` is device-local, so the on/off flag does not
+sync across devices.
+
+If you add a new file under `src/`, also add it to the Xcode project
+(the converter references files individually).
+
 # Privacy / Data collection
 
 TextBlock collects **no data**. It does not gather, store, transmit, or sell any
 personal or browsing information. Everything runs locally in your browser; the
-only stored value is a single on/off flag (`enabled`) kept in Chrome storage so
+only stored value is a single on/off flag (`enabled`) kept in browser storage so
 the extension remembers its toggle state. No analytics, no tracking, no network
 requests to any server.
 
